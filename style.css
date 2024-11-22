@@ -1,0 +1,72 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: #0078D7;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+}
+
+main {
+    margin: 20px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #0078D7;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #005A9E;
+}
+
+#backButton {
+    margin-top: 20px;
+    background-color: #F44336;
+}
+
+#content {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* 동일 스타일 추가 */
+#details {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+#details h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
