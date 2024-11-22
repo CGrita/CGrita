@@ -68,12 +68,13 @@ function showSubMenu(key) {
         subMenu.options.forEach(option => {
             const btn = document.createElement('button');
             btn.textContent = option.text;
-            btn.onclick = () => showDetails(option.text, option.description);
+            btn.addEventListener('click', () => showDetails(option.text, option.description)); // 이벤트 리스너 사용
             menu.appendChild(btn);
         });
         backButton.style.display = 'block'; // 뒤로가기 버튼 표시
     }
 }
+
 
 // 상세 설명 표시
 function showDetails(title, descriptionArray) {
