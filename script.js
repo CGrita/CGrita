@@ -24,6 +24,7 @@ const subMenus = {
                 description: [
                     "메인보드에 꽂힌 파워 케이블을 모두 재연결 한 후 부팅을 시도해보세요.",
                     "메인보드에 꽂힌 파워 케이블을 모두 분리 후 24핀 커넥터를 가위 등으로 쇼트 시켜 보세요.",
+                    "참고영상 https://www.youtube.com/watch?v=WG0IU4TIu38",
                     "쇼트 시 파워가 켜진다면 메인보드 문제일 가능성이 높습니다.",
                     "쇼트 시 파워가 켜지지 않는다면 파워 문제일 가능성이 높습니다."
                 ]
@@ -42,7 +43,7 @@ const subMenus = {
                     "전원을 완전히 차단한 후 설치된 RAM을 모두 분리 하세요.",
                     "RAM의 접점 부분을 마른 천으로 닦아주세요.",
                     "RAM을 다시 설치한 후 부팅을 시도 해보세요.",
-                    "동일한 증상이라면 다른 슬롯에 RAM을 설치 해보세요."
+                    "동일한 증상이라면 다른 슬롯에 RAM을 설치 해보세요.",
                     "RAM이 여러개라면 한개씩 교차로 테스트 해보세요."
                 ]
             }
@@ -82,7 +83,28 @@ function showDetails(title, descriptionArray) {
 
     descriptionArray.forEach(item => {
         const paragraph = document.createElement('p');
-        paragraph.textContent = item;
+        
+        // 링크가 포함된 텍스트 처리
+        const urlPattern = /https?:\/\/[^\s]+/g;
+        const parts = item.split(urlPattern); // 링크를 제외한 텍스트 분리
+        const urls = item.match(urlPattern); // 텍스트 안의 링크만 추출
+
+        // 링크가 있을 경우
+        if (urls) {
+            parts.forEach((part, index) => {
+                paragraph.textContent += part; // 링크 이전의 텍스트
+                if (urls[index]) {
+                    const link = document.createElement('a');
+                    link.href = urls[index];
+                    link.target = '_blank'; // 새 탭에서 링크 열기
+                    link.textContent = urls[index]; // 링크 텍스트
+                    paragraph.appendChild(link); // 링크 추가
+                }
+            });
+        } else {
+            paragraph.textContent = item; // 그냥 텍스트
+        }
+
         detailsDescription.appendChild(paragraph);
     });
 }
