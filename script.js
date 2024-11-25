@@ -115,3 +115,28 @@ function showDetails(title, descriptionArray) {
         detailsDescription.appendChild(paragraph);
     });
 }
+
+const container = document.createElement("div");
+
+subMenus.bootIssue.options.forEach(option => {
+    const title = document.createElement("h3");
+    title.textContent = option.text;
+    container.appendChild(title);
+
+    option.description.forEach(desc => {
+        const wrapper = document.createElement("div");
+
+        if (desc.startsWith("<iframe")) {
+            // HTML로 직접 삽입
+            wrapper.innerHTML = desc;
+        } else {
+            const paragraph = document.createElement("p");
+            paragraph.textContent = desc;
+            wrapper.appendChild(paragraph);
+        }
+
+        container.appendChild(wrapper);
+    });
+});
+
+document.body.appendChild(container);
