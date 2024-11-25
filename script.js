@@ -24,6 +24,13 @@ const subMenus = {
                 description: [
                     "메인보드에 꽂힌 파워 케이블을 모두 재연결 한 후 부팅을 시도해보세요.",
                     "메인보드에 꽂힌 파워 케이블을 모두 분리 후 24핀 커넥터를 가위 등으로 쇼트 시켜 보세요.",
+                    `<iframe 
+                        src="https://www.youtube.com/embed/WG0IU4TIu38" 
+                        width="560" 
+                        height="315" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                     </iframe>`,
                     "쇼트 시 파워가 켜진다면 메인보드 문제일 가능성이 높습니다.",
                     "쇼트 시 파워가 켜지지 않는다면 파워 문제일 가능성이 높습니다."
                 ]
