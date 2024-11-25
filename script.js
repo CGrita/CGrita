@@ -24,13 +24,7 @@ const subMenus = {
                 description: [
                     "메인보드에 꽂힌 파워 케이블을 모두 재연결 한 후 부팅을 시도해보세요.",
                     "메인보드에 꽂힌 파워 케이블을 모두 분리 후 24핀 커넥터를 가위 등으로 쇼트 시켜 보세요.",
-                    `<iframe 
-                        src="https://www.youtube.com/embed/WG0IU4TIu38" 
-                        width="560" 
-                        height="315" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                     </iframe>`,
+                    "https://www.youtube.com/watch?v=WG0IU4TIu38",
                     "쇼트 시 파워가 켜진다면 메인보드 문제일 가능성이 높습니다.",
                     "쇼트 시 파워가 켜지지 않는다면 파워 문제일 가능성이 높습니다."
                 ]
@@ -56,6 +50,33 @@ const subMenus = {
         ]
     }
 };
+
+const container = document.createElement("div");
+subMenus.bootIssue.options.forEach(option => {
+    const title = document.createElement("h3");
+    title.textContent = option.text;
+    container.appendChild(title);
+
+    option.description.forEach(desc => {
+        if (desc.startsWith("http")) {
+            // 유튜브 링크는 iframe으로 임베딩
+            const iframe = document.createElement("iframe");
+            iframe.src = desc;
+            iframe.width = "560";
+            iframe.height = "315";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+            container.appendChild(iframe);
+        } else {
+            // 일반 텍스트는 그대로 표시
+            const paragraph = document.createElement("p");
+            paragraph.textContent = desc;
+            container.appendChild(paragraph);
+        }
+    });
+});
+
+document.body.appendChild(container);
 
 // 최상위 메뉴 표시
 function showMainMenu() {
@@ -116,27 +137,4 @@ function showDetails(title, descriptionArray) {
     });
 }
 
-const container = document.createElement("div");
 
-subMenus.bootIssue.options.forEach(option => {
-    const title = document.createElement("h3");
-    title.textContent = option.text;
-    container.appendChild(title);
-
-    option.description.forEach(desc => {
-        const wrapper = document.createElement("div");
-
-        if (desc.startsWith("<iframe")) {
-            // HTML로 직접 삽입
-            wrapper.innerHTML = desc;
-        } else {
-            const paragraph = document.createElement("p");
-            paragraph.textContent = desc;
-            wrapper.appendChild(paragraph);
-        }
-
-        container.appendChild(wrapper);
-    });
-});
-
-document.body.appendChild(container);
